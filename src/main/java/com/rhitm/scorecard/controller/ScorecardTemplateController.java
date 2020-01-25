@@ -1,5 +1,7 @@
 package com.rhitm.scorecard.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rhitm.scorecard.domain.ScorecardTemplate;
 import com.rhitm.scorecard.dto.create.ScorecardTemplateRequest;
 
 import io.swagger.annotations.Api;
@@ -21,6 +24,11 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/scorecard")
 public class ScorecardTemplateController {
 	
+    @Lookup
+    public ScorecardTemplate getScorecardTemplate() {
+        return null;
+    }
+
 	/**
 	 * Creates a scorecard template.
 	 * <p>
@@ -31,7 +39,7 @@ public class ScorecardTemplateController {
 	 */
 	@ApiOperation("Creates and persists a new scorecard template")
 	@PostMapping(value="/templates", consumes = "application/json")
-	public ResponseEntity create(@RequestBody ScorecardTemplateRequest scorecardTemplate) {
+	public ResponseEntity create(@RequestBody ScorecardTemplateRequest scorecardTemplateRequest) {
 		return new ResponseEntity(HttpStatus.CREATED);
 	}
 
