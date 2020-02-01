@@ -1,0 +1,50 @@
+{
+	"name": "Central Park",
+	"holes": [
+		{
+			"holeNumber": 1,
+			"teePositions": [
+				{
+					"description": "WHITE",
+					"distance": 325,
+					"par": 3
+				},
+				{
+					"description": "BLUE",
+					"distance": 400,
+					"par": 3
+				}
+			]
+		},
+		{
+			"holeNumber": 2,
+			"teePositions": [
+				{
+					"description": "WHITE",
+					"distance": 270,
+					"par": 3
+				},
+				{
+					"description": "BLUE",
+					"distance": 300,
+					"par": 3
+				}
+			]
+		},
+		{
+			"holeNumber": 3,
+			"teePositions": [
+				{
+					"description": "WHITE",
+					"distance": 200,
+					"par": 3
+				},
+				{
+					"description": "BLUE",
+					"distance": 240,
+					"par": 3
+				}
+			]
+		}
+	]
+}
