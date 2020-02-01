@@ -1,6 +1,5 @@
 package com.rhitm.scorecard.dto.create;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
@@ -14,11 +13,6 @@ import lombok.NonNull;
  */
 @Getter
 public class HoleRequest {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 8687444750060418961L;
 
 	/**
 	 * Assigned hole number on the course

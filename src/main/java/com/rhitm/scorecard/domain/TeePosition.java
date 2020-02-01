@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter @Setter
 public class TeePosition {
 	
-	private String description;
+	private TeeDescription description;
 	private int distance;
 	private int par;
 

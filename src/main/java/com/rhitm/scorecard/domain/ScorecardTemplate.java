@@ -2,6 +2,8 @@ package com.rhitm.scorecard.domain;
 
 import java.util.List;
 
+import org.springframework.data.annotation.Id;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +23,7 @@ public class ScorecardTemplate {
 	 * <p>
 	 * Defined as a string to allow UUID values vs long values only.
 	 */
+	@Id
 	private String id;
 	
 	/**

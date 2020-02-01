@@ -1,12 +1,9 @@
 package com.rhitm.scorecard.dto.create;
 
-import java.io.Serializable;
-
 import javax.validation.constraints.NotNull;
 
 import com.rhitm.scorecard.domain.TeeDescription;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
 
@@ -16,11 +13,6 @@ import lombok.NonNull;
  */
 @Getter
 public class TeePositionRequest {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2716312683855164256L;
 
 	// Tee position
 	@NonNull
