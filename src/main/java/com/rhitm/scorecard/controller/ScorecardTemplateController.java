@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rhitm.scorecard.ResourceNotFoundException;
 import com.rhitm.scorecard.domain.ScorecardTemplate;
 import com.rhitm.scorecard.dto.create.ScorecardTemplateRequest;
 import com.rhitm.scorecard.repository.ScorecardTemplateRepository;
@@ -50,14 +51,15 @@ public class ScorecardTemplateController {
 	 */
 	@ApiOperation("Creates and persists a new scorecard template")
 	@PostMapping(consumes = "application/json")
-	public ResponseEntity<String> create(@RequestBody ScorecardTemplateRequest scorecardTemplateRequest) {
+	@ResponseStatus(code = HttpStatus.CREATED)
+	public String create(@RequestBody ScorecardTemplateRequest scorecardTemplateRequest) {
 		
 		ScorecardTemplate scorecardTemplate = new ScorecardTemplate();
 		BeanUtils.copyProperties(scorecardTemplateRequest, scorecardTemplate);
 		
 		ScorecardTemplate savedTemplate = templateRepository.save(scorecardTemplate);
 		
-		return new ResponseEntity<String>(savedTemplate.getId(), HttpStatus.CREATED);
+		return savedTemplate.getId();
 	}
 	
 	/**
@@ -72,11 +74,12 @@ public class ScorecardTemplateController {
 	 */
 	@ApiOperation("Retrieves all scorecard templates")
 	@GetMapping(produces = "application/json")
-	public ResponseEntity<List<ScorecardTemplate>> retrieveAllScorecardTemplates(@RequestParam(name = "CourseName", required = false) String courseName) {
+	@ResponseStatus(code = HttpStatus.OK)
+	public List<ScorecardTemplate> retrieveAllScorecardTemplates(@RequestParam(name = "CourseName", required = false) String courseName) {
 		if(courseName == null) {
-			return new ResponseEntity<List<ScorecardTemplate>>(templateRepository.findAll(), HttpStatus.OK);
+			return templateRepository.findAll();
 		}
-		return new ResponseEntity<List<ScorecardTemplate>>(templateRepository.findByCourseName(courseName), HttpStatus.OK);
+		return templateRepository.findByCourseName(courseName);
 	}
 	
 	/**
@@ -87,12 +90,13 @@ public class ScorecardTemplateController {
 	 */
 	@ApiOperation("Retrieves a scorecard template")
 	@GetMapping(value = "/{templateId}", produces = "application/json")
-	public ResponseEntity<ScorecardTemplate> retrieveScorecardTemplateById(@PathVariable("templateId") String templateId) {
+	@ResponseStatus(code = HttpStatus.OK)
+	public ScorecardTemplate retrieveScorecardTemplateById(@PathVariable("templateId") String templateId) {
 		Optional<ScorecardTemplate> result = templateRepository.findById(templateId);
 		if(result.isPresent()) {
-			return new ResponseEntity<ScorecardTemplate>(result.get(), HttpStatus.OK);
+			return result.get();
 		}
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		throw new ResourceNotFoundException(String.format("No scorecard template found. [templateId=%s]", templateId));
 	}
 	
 }
