@@ -8,6 +8,9 @@ class OffTheChainsScorecardApiApplicationTests {
 
 	@Test
 	void contextLoads() {
+		String[] args = {};
+		
+		OffTheChainsScorecardApiApplication.main(args);
 	}
 
 }
