@@ -7,3 +7,7 @@ target/
 .factorypath
 .project
 .settings/
+
+# Ignore IntelliJ files and directories
+.idea/
+scorecard-api.iml
