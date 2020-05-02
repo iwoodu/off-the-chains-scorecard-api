@@ -8,6 +8,9 @@ target/
 .project
 .settings/
 
-# Ignore IntelliJ files and directories
+# Ignore IntelliJ settings
 .idea/
 scorecard-api.iml
+
+# Ignore Visual Studio Code settings
+.vscode/
