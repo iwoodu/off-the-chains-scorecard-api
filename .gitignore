@@ -7,3 +7,10 @@ target/
 .factorypath
 .project
 .settings/
+
+# Ignore IntelliJ settings
+.idea/
+scorecard-api.iml
+
+# Ignore Visual Studio Code settings
+.vscode/
