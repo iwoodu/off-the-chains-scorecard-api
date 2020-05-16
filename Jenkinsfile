@@ -4,6 +4,8 @@ pipeline {
             image 'maven:3.6.3-jdk-11-slim'
             args '-v /root/.m2:/root/.m2'
         }
+    }
+    agent any {
         tools {
             nodejs "AutomationTestNode"
         }
@@ -26,8 +28,8 @@ pipeline {
         }
         stage('ApiTest') {
             steps {
-                npm install newman
-                run newman ./postman/scorecard-template-api.json
+                sh "npm install newman"
+                sh "run newman ./postman/scorecard-template-api.json"
             }
         }
    }
