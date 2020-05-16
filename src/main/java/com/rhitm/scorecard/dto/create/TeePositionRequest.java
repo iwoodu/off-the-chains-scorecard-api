@@ -1,5 +1,6 @@
 package com.rhitm.scorecard.dto.create;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import com.rhitm.scorecard.domain.TeeDescription;
@@ -25,6 +26,7 @@ public class TeePositionRequest {
 	private TeeDescription description;
 	
 	// Distance from this tee position to the basket
+	@Min(1)
 	private int distance;
 	
 	// The par rating for this tee position

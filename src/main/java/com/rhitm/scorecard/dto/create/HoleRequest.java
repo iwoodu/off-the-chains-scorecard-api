@@ -2,6 +2,7 @@ package com.rhitm.scorecard.dto.create;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -29,6 +30,7 @@ public class HoleRequest {
 	/**
 	 * Tee positions defined for this hole
 	 */
+	@Valid
 	@NotNull(message = "A list of tee positions is required")
 	private List<TeePositionRequest> teePositions;
 

@@ -3,6 +3,8 @@ package com.rhitm.scorecard.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import com.rhitm.scorecard.ResourceNotFoundException;
 import com.rhitm.scorecard.domain.ScorecardTemplate;
 import com.rhitm.scorecard.dto.create.ScorecardTemplateRequest;
@@ -41,7 +43,7 @@ public class ScorecardTemplateController implements ScorecardTemplateOpenApiDocs
 	 */
 	@PostMapping(consumes = "application/json", produces = "application/json")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public String create(@RequestBody ScorecardTemplateRequest scorecardTemplateRequest) {
+	public String create(@Valid @RequestBody ScorecardTemplateRequest scorecardTemplateRequest) {
 		
 		ScorecardTemplate scorecardTemplate = new ScorecardTemplate();
 		BeanUtils.copyProperties(scorecardTemplateRequest, scorecardTemplate);

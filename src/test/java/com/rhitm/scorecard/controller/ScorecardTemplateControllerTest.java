@@ -2,6 +2,7 @@ package com.rhitm.scorecard.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -41,17 +42,17 @@ import com.rhitm.scorecard.repository.ScorecardTemplateRepository;
  * Unit test for the <code>ScoreCardTemplateController</class>.
  *
  */
-//@SpringBootTest
+// @SpringBootTest
 @WebMvcTest(controllers = ScorecardTemplateController.class)
 @AutoConfigureMockMvc
 class ScorecardTemplateControllerTest {
 
-    @MockBean
-    private ScorecardTemplateRepository mockRepository;
-    
-    @Autowired
-    private MockMvc mockMvc;
-    
+	@MockBean
+	private ScorecardTemplateRepository mockRepository;
+
+	@Autowired
+	private MockMvc mockMvc;
+
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 	}
@@ -76,26 +77,44 @@ class ScorecardTemplateControllerTest {
 		mapper.setSerializationInclusion(Include.NON_NULL);
 		mapper.setSerializationInclusion(Include.NON_EMPTY);
 		String jsonRequest = mapper.writeValueAsString(request);
-				
+
 		String mockResponseScorecardId = generateMockScorecardTemplateId();
 		ScorecardTemplate mockResponse = new ScorecardTemplate();
 		mockResponse.setId(mockResponseScorecardId);
-	    when(mockRepository.save(any(ScorecardTemplate.class))).thenReturn(mockResponse);
+		when(mockRepository.save(any(ScorecardTemplate.class))).thenReturn(mockResponse);
+
+		MvcResult result = mockMvc
+				.perform(MockMvcRequestBuilders.post("/scorecards/templates").content(jsonRequest)
+						.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isCreated()).andReturn();
+
+		ArgumentCaptor<ScorecardTemplate> templateCaptor = ArgumentCaptor.forClass(ScorecardTemplate.class);
+		verify(mockRepository, times(1)).save(templateCaptor.capture());
+		assertThat(templateCaptor.getValue().getCourseName()).isEqualTo("Central Park");
+		assertThat(templateCaptor.getValue().getHoles().size()).isEqualTo(1);
+		assertThat(result.getResponse().getContentAsString()).isEqualTo(mockResponseScorecardId);
+	}
+
+	@Test
+	void testCreate_NegativeDistance() throws Exception {
+		ScorecardTemplateRequest request = createMockScorecardTemplateWithNegativeDistance();
+
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.setSerializationInclusion(Include.NON_NULL);
+		mapper.setSerializationInclusion(Include.NON_EMPTY);
+		String jsonRequest = mapper.writeValueAsString(request);
+				
 		
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/scorecards/templates")
+        mockMvc.perform(MockMvcRequestBuilders.post("/scorecards/templates")
                 .content(jsonRequest)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isCreated())
+                .andExpect(status().isBadRequest())
                 .andReturn();
         
-        ArgumentCaptor<ScorecardTemplate> templateCaptor = ArgumentCaptor.forClass(ScorecardTemplate.class);
-        verify(mockRepository, times(1)).save(templateCaptor.capture());
-        assertThat(templateCaptor.getValue().getCourseName()).isEqualTo("Central Park");
-        assertThat(templateCaptor.getValue().getHoles().size()).isEqualTo(1);
-        assertThat(result.getResponse().getContentAsString()).isEqualTo(mockResponseScorecardId);
+		verify(mockRepository, never()).save(any(ScorecardTemplate.class));
 	}
-	
+
 	@Test
 	public void testRetrieveAllScorecardTemplates() throws Exception {
 	    when(mockRepository.findAll()).thenReturn(new ArrayList<ScorecardTemplate>());
@@ -154,6 +173,19 @@ class ScorecardTemplateControllerTest {
 
 	private ScorecardTemplateRequest createMockScorecardTemplate() {
 		TeePositionRequest teePosition = new TeePositionRequest(TeeDescription.WHITE, 500, 3);
+		List<TeePositionRequest> teePositions = new ArrayList<TeePositionRequest>();
+		teePositions.add(teePosition);
+		
+		HoleRequest holeRequest = new HoleRequest(1, teePositions);
+		List<HoleRequest> holes = new ArrayList<HoleRequest>();
+		holes.add(holeRequest);
+		
+		ScorecardTemplateRequest request = new ScorecardTemplateRequest("Central Park", holes);
+		return request;
+	}
+
+	private ScorecardTemplateRequest createMockScorecardTemplateWithNegativeDistance() {
+		TeePositionRequest teePosition = new TeePositionRequest(TeeDescription.WHITE, -100, 3);
 		List<TeePositionRequest> teePositions = new ArrayList<TeePositionRequest>();
 		teePositions.add(teePosition);
 		
