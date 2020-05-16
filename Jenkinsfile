@@ -1,15 +1,15 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.6.3-jdk-11-slim'
-            args '-v /root/.m2:/root/.m2'
-        }
+    agent any
+
+    docker {
+        image 'maven:3.6.3-jdk-11-slim'
+        args '-v /root/.m2:/root/.m2'
     }
-    agent any {
-        tools {
-            nodejs "AutomationTestNode"
-        }
+    
+    tools {
+        nodejs "AutomationTestNode"
     }
+    
     stages {
         stage('Build') {
             steps {
