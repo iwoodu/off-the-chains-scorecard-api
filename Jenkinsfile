@@ -21,5 +21,10 @@ pipeline {
                 }
             }
         }
-    }
+        stage('ApiTest') {
+            steps {
+                run newman ./postman/scorecard-template-api.json
+            }
+        }
+   }
 }
