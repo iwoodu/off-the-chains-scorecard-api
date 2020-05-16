@@ -2,6 +2,9 @@ package com.rhitm.scorecard.domain;
 
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.data.annotation.Id;
 
 import lombok.EqualsAndHashCode;
@@ -30,6 +33,7 @@ public class ScorecardTemplate {
 	/**
 	 * Name of the course
 	 */
+	@NotBlank
 	private String courseName;
 	
 	/**
@@ -37,7 +41,7 @@ public class ScorecardTemplate {
 	 */
 	private List<Hole> holes;
 	
-	public ScorecardTemplate(String courseName, List<Hole> holes) {
+	public ScorecardTemplate(@Valid String courseName, List<Hole> holes) {
 		this.courseName = courseName;
 		this.holes = holes;
 	}
