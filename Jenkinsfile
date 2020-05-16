@@ -1,15 +1,11 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'maven:3.6.3-jdk-11-slim'
+            args '-v /root/.m2:/root/.m2'
+        }
+    }
 
-    docker {
-        image 'maven:3.6.3-jdk-11-slim'
-        args '-v /root/.m2:/root/.m2'
-    }
-    
-    tools {
-        nodejs "AutomationTestNode"
-    }
-    
     stages {
         stage('Build') {
             steps {
@@ -28,6 +24,8 @@ pipeline {
         }
         stage('ApiTest') {
             steps {
+                sh "apk add nodejs"
+                sh "echo $PATH"
                 sh "npm install newman"
                 sh "run newman ./postman/scorecard-template-api.json"
             }
