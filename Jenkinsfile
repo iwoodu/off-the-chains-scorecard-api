@@ -29,5 +29,5 @@ pipeline {
                 sh "run newman ./postman/scorecard-template-api.json"
             }
         }
-   }
+    }
 }
