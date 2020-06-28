@@ -1,5 +1,7 @@
 package com.rhitm.scorecard;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -26,7 +28,10 @@ import io.swagger.v3.oas.annotations.info.Info;
 )
 public class OffTheChainsScorecardApiApplication {
 
+    private static final Logger logger = LoggerFactory.getLogger(OffTheChainsScorecardApiApplication.class);
+
 	public static void main(final String[] args) {
+        logger.info("Off the Chains Scorecard API v1.0.0");
 		SpringApplication.run(OffTheChainsScorecardApiApplication.class, args);
 	}
 
