@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.3.RELEASE</version>
+		<version>2.3.1.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.rhitm.offthechains</groupId>
@@ -17,19 +17,34 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<spring.cloud.version>2.2.2.RELEASE</spring.cloud.version>
+		<spring.actuator.version>2.3.1.RELEASE</spring.actuator.version>
+		<okta.version>1.4.0</okta.version>
 		<logback.contrib.version>0.1.5</logback.contrib.version>
+		<fasterxml.version>2.11.1</fasterxml.version>
 	</properties>
 
-	<dependencies>
+	
 
+	<dependencies>
+		<!-- Actuator support -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
+		<!-- security / oauth2 - begin -->
+		<dependency>
+			<groupId>com.okta.spring</groupId>
+			<artifactId>okta-spring-boot-starter</artifactId>
+			<version>${okta.version}</version>
+		</dependency>
+		<!-- security - end -->
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -73,13 +88,6 @@
 			</exclusions>
 		</dependency>
 
-		<!-- Spring Boot Actuator Support -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-			<version>2.2.2.RELEASE</version>
-		</dependency>
-
 		<!-- Logback JSON logging support -->
         <dependency>
             <groupId>ch.qos.logback.contrib</groupId>
@@ -93,12 +101,6 @@
             <version>${logback.contrib.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.9.5</version>
-        </dependency>	
-	
 		<!-- meanBean simplifies unit testing of Java beans -->
 		<dependency>
 		    <groupId>org.meanbean</groupId>

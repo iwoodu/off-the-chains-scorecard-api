@@ -10,8 +10,16 @@ The API centers around 2 primary concepts:
 
    Created from a template, a scorecard captures the scores for a specific round,
    at a specific course, playing a specific course layout.
-   
+
 ## Getting Started
+The API is secured using OAuth2 and Okta. Set the following environment variables to connect to the authorization server and to set the client ID, client secret for your API.
+```
+  "okta.oauth2.issuer" : "https://myoktahost.okta.com/oauth2/default",
+  "okta.oauth2.clientId" : "<assigned-client-id>",
+  "okta.oauth2.clientSecret" : "<assigned-client-secret>",
+  "okta.oauth2.scopes" : "openid"
+
+
 ### Creating a Scorecard Template
 **POST** http://\<host>:\<port>/scorecards/templates
 
