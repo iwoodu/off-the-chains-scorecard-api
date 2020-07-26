@@ -19,10 +19,9 @@ directory to compile, test, and package the API into a runnable FAT jar.
 > mvn package
 
 ### How to Run
-The jar includes a Tomcat server to host the API and exposes it
-on port 8081 by default.
+The jar includes a Tomcat server to host the API and exposes it on port 8081 by default.
 
-> java -jar off-the-chains-scorecard-api.jar
+> java -jar off-the-chains-scorecard-api-2.2.3.RELEASE.jar
 
 ### Creating a Scorecard Template
 **POST** http://\<host>:\<port>/scorecards/templates
