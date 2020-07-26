@@ -1,4 +1,4 @@
-# off-the-chains-scorecard-api
+# Off the Chains Scorecard API
 API for creating and managing disc golf scorecards
 
 The API centers around 2 primary concepts:
@@ -12,6 +12,18 @@ The API centers around 2 primary concepts:
    at a specific course, playing a specific course layout.
    
 ## Getting Started
+### How to Build
+This project uses the Maven build framework. Enter the command below from the project 
+directory to compile, test, and package the API into a runnable FAT jar.
+
+> mvn package
+
+### How to Run
+The jar includes a Tomcat server to host the API and exposes it
+on port 8081 by default.
+
+> java -jar off-the-chains-scorecard-api.jar
+
 ### Creating a Scorecard Template
 **POST** http://\<host>:\<port>/scorecards/templates
 
