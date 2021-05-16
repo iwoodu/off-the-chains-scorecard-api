@@ -1,9 +1,9 @@
 package com.rhitm.scorecard.dto.create;
 
-import java.util.List;
-
-import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+
+import com.rhitm.scorecard.domain.TeeDescription;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -24,14 +24,19 @@ public class HoleRequest {
 	/**
 	 * Assigned hole number on the course
 	 */
-	@NotNull(message = "The hole number is required")
+	@Min(1)
 	private int holeNumber;
 	
-	/**
-	 * Tee positions defined for this hole
-	 */
-	@Valid
-	@NotNull(message = "A list of tee positions is required")
-	private List<TeePositionRequest> teePositions;
+	// Tee position
+	@NotNull(message = "A tee position description of GOLD, BLUE, WHITE, or RED is required")
+	private TeeDescription description;
+	
+	// Distance from this tee position to the basket, in feet
+	@Min(1)
+	private int distance;
+	
+	// The par rating for this tee position
+	@Min(1)
+	private int par;
 
 }

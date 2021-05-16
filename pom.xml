@@ -45,7 +45,6 @@
 		<dependency>
 			<groupId>de.flapdoodle.embed</groupId>
 			<artifactId>de.flapdoodle.embed.mongo</artifactId>
-			<version>3.0.0</version>
 		</dependency>
 
 		<!-- API Documentation -->
@@ -72,13 +71,6 @@
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-
-		<!-- Spring Boot Actuator Support -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-			<version>2.2.2.RELEASE</version>
 		</dependency>
 
 		<!-- Logback JSON logging support -->

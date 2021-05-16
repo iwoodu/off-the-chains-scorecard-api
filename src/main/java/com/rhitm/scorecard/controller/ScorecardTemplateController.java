@@ -9,8 +9,8 @@ import com.rhitm.scorecard.ResourceNotFoundException;
 import com.rhitm.scorecard.domain.ScorecardTemplate;
 import com.rhitm.scorecard.dto.create.ScorecardTemplateRequest;
 import com.rhitm.scorecard.repository.ScorecardTemplateRepository;
+import com.rhitm.scorecard.util.ScorecardBeanUtils;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,7 +46,7 @@ public class ScorecardTemplateController implements ScorecardTemplateOpenApiDocs
 	public String create(@Valid @RequestBody ScorecardTemplateRequest scorecardTemplateRequest) {
 		
 		ScorecardTemplate scorecardTemplate = new ScorecardTemplate();
-		BeanUtils.copyProperties(scorecardTemplateRequest, scorecardTemplate);
+		ScorecardBeanUtils.copyProperties(scorecardTemplateRequest, scorecardTemplate);
 		
 		ScorecardTemplate savedTemplate = templateRepository.save(scorecardTemplate);
 		
