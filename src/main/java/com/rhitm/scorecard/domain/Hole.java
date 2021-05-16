@@ -19,9 +19,13 @@ public class Hole {
 	 */
 	private int holeNumber;
 	
-	/**
-	 * Tee positions defined for this hole
-	 */
-	private List<TeePosition> teePositions;
+	// Tee position
+	private TeeDescription description;
+	
+	// Distance from this tee position to the basket, in feet
+	private int distance;
+	
+	// The par rating for this tee position
+	private int par;
 
 }
