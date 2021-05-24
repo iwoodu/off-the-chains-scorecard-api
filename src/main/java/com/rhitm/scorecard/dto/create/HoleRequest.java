@@ -29,7 +29,7 @@ public class HoleRequest {
 	
 	// Tee position
 	@NotNull(message = "A tee position description of GOLD, BLUE, WHITE, or RED is required")
-	private TeePosition description;
+	private TeePosition teePosition;
 	
 	// Distance from this tee position to the basket, in feet
 	@Min(1)
