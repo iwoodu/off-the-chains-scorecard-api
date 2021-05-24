@@ -3,7 +3,7 @@ package com.rhitm.scorecard.dto.create;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-import com.rhitm.scorecard.domain.TeeDescription;
+import com.rhitm.scorecard.domain.TeePosition;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -29,7 +29,7 @@ public class HoleRequest {
 	
 	// Tee position
 	@NotNull(message = "A tee position description of GOLD, BLUE, WHITE, or RED is required")
-	private TeeDescription description;
+	private TeePosition teePosition;
 	
 	// Distance from this tee position to the basket, in feet
 	@Min(1)
