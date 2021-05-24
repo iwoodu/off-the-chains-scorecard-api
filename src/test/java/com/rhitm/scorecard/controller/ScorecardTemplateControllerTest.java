@@ -32,7 +32,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rhitm.scorecard.domain.ScorecardTemplate;
-import com.rhitm.scorecard.domain.TeeDescription;
+import com.rhitm.scorecard.domain.TeePosition;
 import com.rhitm.scorecard.dto.create.HoleRequest;
 import com.rhitm.scorecard.dto.create.ScorecardTemplateRequest;
 import com.rhitm.scorecard.repository.ScorecardTemplateRepository;
@@ -225,7 +225,7 @@ void testCreate_InvalidPar() throws Exception {
 	}
 
 	private ScorecardTemplateRequest createMockScorecardTemplate() {
-		HoleRequest holeRequest = new HoleRequest(1, TeeDescription.WHITE, 500, 3);
+		HoleRequest holeRequest = new HoleRequest(1, TeePosition.WHITE, 500, 3);
 		List<HoleRequest> holes = new ArrayList<HoleRequest>();
 		holes.add(holeRequest);
 		
@@ -234,7 +234,7 @@ void testCreate_InvalidPar() throws Exception {
 	}
 
 	private ScorecardTemplateRequest createMockScorecardTemplateWithNegativeDistance() {
-		HoleRequest holeRequest = new HoleRequest(1, TeeDescription.WHITE, -100, 3);
+		HoleRequest holeRequest = new HoleRequest(1, TeePosition.WHITE, -100, 3);
 		List<HoleRequest> holes = new ArrayList<HoleRequest>();
 		holes.add(holeRequest);
 		

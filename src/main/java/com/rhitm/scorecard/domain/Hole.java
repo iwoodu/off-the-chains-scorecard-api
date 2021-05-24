@@ -18,7 +18,7 @@ public class Hole {
 	private int holeNumber;
 	
 	// Tee position
-	private TeeDescription description;
+	private TeePosition teePosition;
 	
 	// Distance from this tee position to the basket, in feet
 	private int distance;
