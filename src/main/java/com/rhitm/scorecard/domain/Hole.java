@@ -1,7 +1,5 @@
 package com.rhitm.scorecard.domain;
 
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,7 +18,7 @@ public class Hole {
 	private int holeNumber;
 	
 	// Tee position
-	private TeeDescription description;
+	private TeePosition description;
 	
 	// Distance from this tee position to the basket, in feet
 	private int distance;
