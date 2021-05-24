@@ -1,4 +1,4 @@
-# off-the-chains-scorecard-api
+# Off the Chains Scorecard API
 API for creating and managing disc golf scorecards
 
 The API centers around 2 primary concepts:
@@ -12,6 +12,18 @@ The API centers around 2 primary concepts:
    at a specific course, playing a specific course layout.
    
 ## Getting Started
+### How to Build and Run the Scorecard API
+The Scorecard API runs in a Tomcat web container by default.  To run the API on an existing host outside of a container, execute the following command in the same directory as the POM file.
+```bash
+$ ./mvnw package
+$ ./mvnw spring-boot:run 
+```
+To run the API in a Docker container, execute the following:
+```bash
+$ docker build --pull --rm -f "Dockerfile" -t offthechainsscorecardapi:latest "."
+$ docker run --rm -d  -p 8081:8081/tcp offthechainsscorecardapi:latest
+```
+
 ### Creating a Scorecard Template
 **POST** http://\<host>:\<port>/scorecards/templates
 
