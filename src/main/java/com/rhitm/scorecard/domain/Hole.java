@@ -1,7 +1,5 @@
 package com.rhitm.scorecard.domain;
 
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
